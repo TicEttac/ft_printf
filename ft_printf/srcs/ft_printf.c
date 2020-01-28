@@ -6,7 +6,7 @@
 /*   By: mlormois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/15 05:46:25 by mlormois          #+#    #+#             */
-/*   Updated: 2020/01/25 09:52:17 by nisauvig         ###   ########.fr       */
+/*   Updated: 2020/01/28 17:51:52 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ int		ft_vprintf(char const *format, va_list arg)
 {
 	t_buffer save;
 
-	save = ft_save_init(format);
+//	save = ft_save_init(format);
+	ft_memset(&save, 0, sizeof(t_buffer));
+	save.format = format;
 	while (save.format[save.index])
 	{
 		if (save.format[save.index] == '%')

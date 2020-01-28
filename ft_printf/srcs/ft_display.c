@@ -6,7 +6,7 @@
 /*   By: mlormois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 16:55:10 by mlormois          #+#    #+#             */
-/*   Updated: 2020/01/27 04:53:10 by nisauvig         ###   ########.fr       */
+/*   Updated: 2020/01/28 19:44:08 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,18 @@ t_flag		ft_flag_init(void)
 {
 	t_flag flags;
 
-	flags.plus = FALSE;
-	flags.minus = FALSE;
-	flags.zero = FALSE;
-	flags.space = FALSE;
-	flags.point = FALSE;
+	ft_memset(&flags, 0, sizeof(t_flag));
 	flags.precision = ERROR;
 	flags.width = ERROR;
 	return (flags);
 }
-
+/*
 t_buffer	ft_save_init(char const *format)
 {
 	t_buffer 	save;
-	char 		*buffer;
 
-	buffer = NULL;
 	save.format = format;
-	save.buffer = buffer;
+	save.buffer = NULL;
 	save.index = 0;
 	save.count = 0;
 	return (save);
@@ -92,8 +86,55 @@ int		ft_putstr_buffer(char *str, t_buffer *save)
 		i++;
 	}
 	return (1);
+}*/
+
+int		ft_putchar_buffer(char c, t_buffer *save)
+{
+	char	*s;
+
+	if (!(s = malloc(save->count + 2)))
+		return (0);
+	ft_memcpy(s, save->buffer, save->count);
+	s[save->count] = c;
+	save->index++;
+	save->count++;
+	s[save->count + 1] = '\0';
+	if (save->buffer)
+		free(save->buffer);
+	save->buffer = NULL;
+	save->buffer = s;
+	return (1);
 }
 
+int ft_putstr_buffer(char *str, t_buffer *save)
+{
+	char	*s;
+	int		i;
+	int		len;
+
+	i = 0;
+	s = NULL;
+	len = ft_strlen(str);
+	if (!(s = (char *)malloc(sizeof(char) * (save->count + len + 1))))
+		return (0);
+	ft_memcpy(s, save->buffer, save->count);
+	while (str && str[i])
+	{
+		s[save->count] = str[i];
+		save->count++;
+		i++;
+	}
+	s[save->count] = '\0';
+//	printf("s[%s], scount[%d]\n", s, save->count);
+	if (save->buffer)
+	{
+		free(save->buffer);
+		save->buffer = NULL;
+	}
+	save->buffer = s;
+//	free(s);
+	return (1);
+}
 int		ft_print_buffer(t_buffer *save)
 {
 	int i = 0;
