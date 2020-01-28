@@ -6,21 +6,19 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 12:31:34 by nisauvig          #+#    #+#             */
-/*   Updated: 2020/01/25 09:29:23 by nisauvig         ###   ########.fr       */
+/*   Updated: 2020/01/28 22:29:10 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-//#include <stdio.h>
-//#include <stdlib.h>
 
 char	*ft_ultoa_base(unsigned long value, int base)
 {
-	char	*tab_base;
-	char	*dst;
-	int		size_dst;
-	int		valtmp;
-	int		i;
+	char			*tab_base;
+	char			*dst;
+	int				size_dst;
+	unsigned long	valtmp;
+	int				i;
 
 	size_dst = 1;
 	valtmp = value;
@@ -42,7 +40,7 @@ int		flag_p(va_list arg, t_flag *flags, t_buffer *save)
 	unsigned long	tmp;
 
 	tmp = (unsigned long)va_arg(arg, unsigned long);
-	if (!(res = ft_utoa_base(tmp, 16)))
+	if (!(res = ft_ultoa_base(tmp, 16)))
 		return (ERROR);
 	if (flags->plus || flags->zero || flags->space
 			|| flags->point || flags->precision != ERROR)
