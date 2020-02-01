@@ -19,8 +19,6 @@ int main()
 	int		m = -12345678;
 	char	*n = "abcdefghijklmnop";
 
-//	ft_printf("%c", (char)0);
-//	printf("[>------------<%60c>------------<]\n", (char)0);
-ft_printf("[[[%c, %-c, %12c, %-3c, %-1c, %1c, %-2c, %-4c, %5c, %3c, %-*c, %-*c, %*c, %*c]]]\n", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0);
-//printf("%c, %-c, %12c, %-3c, %-1c, %1c, %-2c, %-4c, %5c, %3c, %-*c, %-*c, %*c, %*c", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0);
+	printf(" --- Return[%d]\n", printf("%0i, %0d, %0d, %0d, %0d, %0d, %0d, %0d", i, j, k, l, m, c, e, d));
+	printf(" --- Return[%d]\n", ft_printf("%0i, %0d, %0d, %0d, %0d, %0d, %0d, %0d", i, j, k, l, m, c, e, d));
 }
